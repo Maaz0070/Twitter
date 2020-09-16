@@ -23,6 +23,7 @@ class HomeTableTableViewController: UITableViewController {
     @IBAction func onLogout(_ sender: Any) {
         TwitterAPICaller.client?.logout()
         self.dismiss(animated: true, completion: nil) //screen will dismiss. Want it to be animated. Don't want anything to happen once it's gone.
+        UserDefaults.standard.set(false, forKey: "userLoggedIn") //set value for userLoggein to false so next time it asks you to log in 
     }
     
     // MARK: - Table view data source
