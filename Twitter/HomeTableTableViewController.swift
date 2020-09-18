@@ -13,34 +13,64 @@ class HomeTableTableViewController: UITableViewController {
     var tweetArray = [NSDictionary]() //start with empty dictionariy
     var numberOfTweet: Int!
     
+    let myRefreshControl = UIRefreshControl() //when pull up refresh
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadTweet() //when view loads calls the loadTweet finction
+        loadTweets() //when view loads calls the loadTweet finction
+        myRefreshControl.addTarget(self, action: #selector(loadTweets), for: .valueChanged)  //when it loads first also want to do this. Target we want refresh to happen on this screen. Selector we want to print tweets again.
+        tableView.refreshControl = myRefreshControl //Telling table which refresh control to use
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
    
     
-    func loadTweet(){
+    @objc func loadTweets(){
         
+        numberOfTweet = 20
         let myUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json"
-        let myParams = ["count": 10]//
+        let myParams = ["count": numberOfTweet]//
         
         TwitterAPICaller.client?.getDictionariesRequest(url: myUrl, parameters: myParams, success: { (tweets: [NSDictionary]) in //when sucess NSDictionary repsonse we will call it tweets so when we write our code we can refer to reuslt as tweets and we will store the tweets in local array
             self.tweetArray.removeAll()
             for tweet in tweets {
                 self.tweetArray.append(tweet)  //storing tweets in tweet array
+                self.myRefreshControl.endRefreshing()//after updating table end the refreshing
             }
              self.tableView.reloadData() //make sure anytime we call the API, we repopulate our list to reload data with that content
         }, failure: { (Error) in
             print("Could not retreive tweets! oh no!")
         })//call AP
     }
+    
+    
+    
+    //Function adds twenty tweets adds +10 as they score
+    func loadMoreTweets()
+    {
+        let myUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json" //same API call
+        //change the way we are setting count. Inst
+        numberOfTweet = numberOfTweet + 20//Whatever the number of tweet is at this point add20 tweets on top of that
+        let myParams = ["count": numberOfTweet]
+        
+        //same API call as before and what to do when succeed and what to do when fail
+        TwitterAPICaller.client?.getDictionariesRequest(url: myUrl, parameters: myParams, success: { (tweets: [NSDictionary]) in //when sucess NSDictionary repsonse we will call it tweets so when we write our code we can refer to reuslt as tweets and we will store the tweets in local array
+            self.tweetArray.removeAll()
+            for tweet in tweets {
+                self.tweetArray.append(tweet)  //storing tweets in tweet array
+                self.myRefreshControl.endRefreshing()//after updating table end the refreshing
+            }
+             self.tableView.reloadData() //make sure anytime we call the API, we repopulate our list to reload data with that content
+        }, failure: { (Error) in
+            print("Could not retreive tweets! oh no!")
+        })//call AP
+        
+    }
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath){
+        if indexPath.row + 1 == tweetArray.count {
+        loadMoreTweets()
+        }
+    }//need to trigger loadMoreTweest when user gets to end of page
+    
 
     @IBAction func onLogout(_ sender: Any) {
         TwitterAPICaller.client?.logout()
