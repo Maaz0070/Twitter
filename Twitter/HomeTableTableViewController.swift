@@ -17,12 +17,15 @@ class HomeTableTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadTweets() //when view loads calls the loadTweet finction
+        loadTweets() //when view loads call the loadTweet finction
         myRefreshControl.addTarget(self, action: #selector(loadTweets), for: .valueChanged)  //when it loads first also want to do this. Target we want refresh to happen on this screen. Selector we want to print tweets again.
         tableView.refreshControl = myRefreshControl //Telling table which refresh control to use
 
     }
-   
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.loadMoreTweets()
+    }// load tweets when view appears instead of just load once. To call it everytime
     
     @objc func loadTweets(){
         
