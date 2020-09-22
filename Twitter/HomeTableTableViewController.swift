@@ -31,7 +31,7 @@ class HomeTableTableViewController: UITableViewController {
         
         numberOfTweet = 20
         let myUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json"
-        let myParams = ["count": numberOfTweet]//
+        let myParams = ["count": numberOfTweet]//yes
         
         TwitterAPICaller.client?.getDictionariesRequest(url: myUrl, parameters: myParams, success: { (tweets: [NSDictionary]) in //when sucess NSDictionary repsonse we will call it tweets so when we write our code we can refer to reuslt as tweets and we will store the tweets in local array
             self.tweetArray.removeAll()
