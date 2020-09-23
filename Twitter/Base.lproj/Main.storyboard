@@ -56,11 +56,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweetCell" rowHeight="135" id="gDg-HL-olO" customClass="TweetCellTableViewCell" customModule="Twitter" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="135"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweetCell" rowHeight="150" id="gDg-HL-olO" customClass="TweetCellTableViewCell" customModule="Twitter" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gDg-HL-olO" id="V7K-3m-Qa7">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="135"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mDf-yd-kKj">
@@ -76,16 +76,37 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweet content" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kp-fw-4kg">
-                                            <rect key="frame" x="89" y="37" width="270" height="87"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0D-NR-cWi">
+                                            <rect key="frame" x="319" y="99" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="eAJ-6x-41u"/>
+                                                <constraint firstAttribute="width" constant="30" id="pO2-eI-rnr"/>
+                                            </constraints>
+                                            <state key="normal" title="favButton" image="suit.heart.fill" catalog="system"/>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tweet content" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kp-fw-4kg">
+                                            <rect key="frame" x="89" y="37" width="270" height="64"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBh-t1-xhY">
+                                            <rect key="frame" x="279" y="109" width="30" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="fvl-v9-diz"/>
+                                                <constraint firstAttribute="width" constant="30" id="leU-R5-stQ"/>
+                                            </constraints>
+                                            <state key="normal" title="retweetButton" image="arrowshape.turn.up.right" catalog="system"/>
+                                        </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="m0D-NR-cWi" secondAttribute="trailing" constant="10" id="01Y-uF-oxz"/>
+                                        <constraint firstItem="m0D-NR-cWi" firstAttribute="leading" secondItem="KBh-t1-xhY" secondAttribute="trailing" constant="10" id="4jK-du-0TK"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="KBh-t1-xhY" secondAttribute="bottom" constant="10" id="KLT-f3-kTR"/>
                                         <constraint firstItem="8Fo-mE-tJw" firstAttribute="top" secondItem="V7K-3m-Qa7" secondAttribute="topMargin" id="MjV-Ai-qQl"/>
                                         <constraint firstItem="8Fo-mE-tJw" firstAttribute="leading" secondItem="mDf-yd-kKj" secondAttribute="trailing" constant="8" id="VzP-Q1-8V3"/>
+                                        <constraint firstItem="m0D-NR-cWi" firstAttribute="top" secondItem="1kp-fw-4kg" secondAttribute="bottom" constant="-40" id="mDG-fj-oaE"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="m0D-NR-cWi" secondAttribute="bottom" constant="10" id="pDO-34-5ym"/>
                                         <constraint firstItem="1kp-fw-4kg" firstAttribute="top" secondItem="8Fo-mE-tJw" secondAttribute="bottom" constant="4" id="rYn-Px-vaA"/>
                                         <constraint firstItem="mDf-yd-kKj" firstAttribute="top" secondItem="V7K-3m-Qa7" secondAttribute="topMargin" id="tHR-36-Veh"/>
                                         <constraint firstItem="1kp-fw-4kg" firstAttribute="leading" secondItem="mDf-yd-kKj" secondAttribute="trailing" constant="8" id="u1D-3y-hgP"/>
@@ -172,7 +193,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KqN-BQ-dh5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3148" y="-127.28635682158921"/>
+            <point key="canvasLocation" x="3100" y="-259"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nnA-sD-ptA">
@@ -211,7 +232,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pnz-WY-2h8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2206" y="-135"/>
+            <point key="canvasLocation" x="2249" y="-258"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrowshape.turn.up.right" catalog="system" width="128" height="106"/>
+        <image name="suit.heart.fill" catalog="system" width="128" height="109"/>
+    </resources>
 </document>
