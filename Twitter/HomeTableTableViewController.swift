@@ -20,6 +20,8 @@ class HomeTableTableViewController: UITableViewController {
         loadTweets() //when view loads call the loadTweet finction
         myRefreshControl.addTarget(self, action: #selector(loadTweets), for: .valueChanged)  //when it loads first also want to do this. Target we want refresh to happen on this screen. Selector we want to print tweets again.
         tableView.refreshControl = myRefreshControl //Telling table which refresh control to use
+        self.tableView.rowHeight = UITableView.automaticDimension//want ios to know that for these cell heights we want it to be automatically calculated instead of fixed value
+        self.tableView.estimatedRowHeight = 150//give it a estimated height so that atleast it starts with some type of height
 
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -98,6 +100,8 @@ class HomeTableTableViewController: UITableViewController {
         if let imageData = data{
             cell.profileImageView.image = UIImage(data: imageData)
         }
+        cell.setFavorite(tweetArray[indexPath.row]["favorited"] as! Bool)//Need to figure out if current tweet is already favorited
+        cell.tweetId = tweetArray[indexPath.row]["id"] as! Int
         return cell
     }
     

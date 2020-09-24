@@ -73,5 +73,19 @@ class TwitterAPICaller: BDBOAuth1SessionManager {
            })
     }   //postTweet takes in a tweet string that you get from user. Get what to do when success failure that is similar to other API calls. Status was the only required paramater and we pass in the tweetString
     
+    func favoriteTweet(tweetId:Int, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        let url = "https://api.twitter.com/1.1/favorites/create.json"
+        TwitterAPICaller.client?.post(url, parameters: ["id":tweetId], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in success()
+        }, failure: { (task: URLSessionDataTask?, error: Error) in failure(error)
+        })
+    }
+    
+    func unfavoriteTweet(tweetId:Int, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        let url = "https://api.twitter.com/1.1/favorites/destroy.json"
+        TwitterAPICaller.client?.post(url, parameters: ["id":tweetId], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in success()
+        }, failure: { (task: URLSessionDataTask?, error: Error) in failure(error)
+        })
+    }
+    
     
 }
