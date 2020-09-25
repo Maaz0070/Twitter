@@ -83,7 +83,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBh-t1-xhY">
-                                            <rect key="frame" x="279" y="113" width="30" height="20"/>
+                                            <rect key="frame" x="269" y="113" width="40" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="fvl-v9-diz"/>
                                                 <constraint firstAttribute="width" constant="30" id="leU-R5-stQ"/>
